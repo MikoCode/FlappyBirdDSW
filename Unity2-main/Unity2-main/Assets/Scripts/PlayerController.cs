@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float strength = 1;
-
+    public AudioClip jump;
+    public AudioSource audioSource;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -17,9 +18,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Space) && GameManager.Instance.deathMenu == false)
         {
-          
+            audioSource.PlayOneShot(jump);
             if(GameManager.Instance.gameOn == false)
             {
                 GameManager.Instance.gameOn = true;
